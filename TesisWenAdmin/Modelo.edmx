@@ -1,0 +1,997 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="TesisbdModel.Store" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.6" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="bus">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Empresa_Id" Type="int" Nullable="false" />
+          <Property Name="Patente" Type="varchar" MaxLength="45" Nullable="false" />
+        </EntityType>
+        <EntityType Name="chofer">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Usuario_Id" Type="int" Nullable="false" />
+          <Property Name="Bus_Id" Type="int" Nullable="false" />
+          <Property Name="Empresa_Id" Type="int" Nullable="false" />
+          <Property Name="Online" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ciudad">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="45" />
+        </EntityType>
+        <EntityType Name="empresa">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="Correo" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="Dirección" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="Telefono" Type="varchar" MaxLength="15" Nullable="false" />
+        </EntityType>
+        <EntityType Name="esta_en">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Usuario_Id" Type="int" Nullable="false" />
+          <Property Name="Paradero_Id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="hace">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="hora_inicio" Type="time" Precision="0" />
+          <Property Name="hora_termino" Type="time" Precision="0" />
+          <Property Name="Bus_Id" Type="int" Nullable="false" />
+          <Property Name="Recorrido_Id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="notificación">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Comentario" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Usuario_Id" Type="int" Nullable="false" />
+          <Property Name="Hora" Type="time" Precision="0" Nullable="false" />
+        </EntityType>
+        <EntityType Name="paradero">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Longitud" Type="decimal" Precision="15" Scale="10" Nullable="false" />
+          <Property Name="Latitud" Type="decimal" Precision="15" Scale="10" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="pasajero">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Usuario_Id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="recorrido">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="HorarioOrigen" Type="time" Precision="0" />
+          <Property Name="HorarioDestino" Type="time" Precision="0" />
+          <Property Name="Ciudad_Origen_Id" Type="int" Nullable="false" />
+          <Property Name="Ciudad_Destino_Id" Type="int" Nullable="false" />
+          <Property Name="Día" Type="varchar" MaxLength="45" Nullable="false" />
+        </EntityType>
+        <EntityType Name="recorrido_paradero">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Recorrido_Id" Type="int" Nullable="false" />
+          <Property Name="Paradero_Id" Type="int" Nullable="false" />
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tipopasaje">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Tipo" Type="varchar" MaxLength="45" />
+        </EntityType>
+        <EntityType Name="tipopasaje_recorrido">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="TipoPasaje_Id" Type="int" Nullable="false" />
+          <Property Name="Recorrido_Id" Type="int" Nullable="false" />
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Precio" Type="int" />
+        </EntityType>
+        <EntityType Name="usuario">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Longitud" Type="double" />
+          <Property Name="Latitud" Type="double" />
+          <Property Name="Correo" Type="varchar" MaxLength="45" Nullable="false" />
+        </EntityType>
+        <Association Name="fk_Bus_Empresa1">
+          <End Role="empresa" Type="Self.empresa" Multiplicity="1" />
+          <End Role="bus" Type="Self.bus" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="empresa">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="bus">
+              <PropertyRef Name="Empresa_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Chofer_Bus1">
+          <End Role="bus" Type="Self.bus" Multiplicity="1" />
+          <End Role="chofer" Type="Self.chofer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="bus">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="chofer">
+              <PropertyRef Name="Bus_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Chofer_Empresa1">
+          <End Role="empresa" Type="Self.empresa" Multiplicity="1" />
+          <End Role="chofer" Type="Self.chofer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="empresa">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="chofer">
+              <PropertyRef Name="Empresa_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Chofer_Usuario1">
+          <End Role="usuario" Type="Self.usuario" Multiplicity="1" />
+          <End Role="chofer" Type="Self.chofer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="usuario">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="chofer">
+              <PropertyRef Name="Usuario_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Esta_En_Paradero1">
+          <End Role="paradero" Type="Self.paradero" Multiplicity="1" />
+          <End Role="esta_en" Type="Self.esta_en" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="paradero">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="esta_en">
+              <PropertyRef Name="Paradero_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Esta_En_Usuario1">
+          <End Role="usuario" Type="Self.usuario" Multiplicity="1" />
+          <End Role="esta_en" Type="Self.esta_en" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="usuario">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="esta_en">
+              <PropertyRef Name="Usuario_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Hace_Bus1">
+          <End Role="bus" Type="Self.bus" Multiplicity="1" />
+          <End Role="hace" Type="Self.hace" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="bus">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="hace">
+              <PropertyRef Name="Bus_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Hace_Recorrido1">
+          <End Role="recorrido" Type="Self.recorrido" Multiplicity="1" />
+          <End Role="hace" Type="Self.hace" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="recorrido">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="hace">
+              <PropertyRef Name="Recorrido_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Notificación_Usuario1">
+          <End Role="usuario" Type="Self.usuario" Multiplicity="1" />
+          <End Role="notificación" Type="Self.notificación" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="usuario">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="notificación">
+              <PropertyRef Name="Usuario_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Pasajero_Usuario1">
+          <End Role="usuario" Type="Self.usuario" Multiplicity="1" />
+          <End Role="pasajero" Type="Self.pasajero" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="usuario">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="pasajero">
+              <PropertyRef Name="Usuario_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Recorrido_Ciudad1">
+          <End Role="ciudad" Type="Self.ciudad" Multiplicity="1" />
+          <End Role="recorrido" Type="Self.recorrido" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ciudad">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="recorrido">
+              <PropertyRef Name="Ciudad_Origen_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Recorrido_Ciudad2">
+          <End Role="ciudad" Type="Self.ciudad" Multiplicity="1" />
+          <End Role="recorrido" Type="Self.recorrido" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ciudad">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="recorrido">
+              <PropertyRef Name="Ciudad_Destino_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Recorrido_has_Paradero_Paradero1">
+          <End Role="paradero" Type="Self.paradero" Multiplicity="1" />
+          <End Role="recorrido_paradero" Type="Self.recorrido_paradero" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="paradero">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="recorrido_paradero">
+              <PropertyRef Name="Paradero_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Recorrido_has_Paradero_Recorrido1">
+          <End Role="recorrido" Type="Self.recorrido" Multiplicity="1" />
+          <End Role="recorrido_paradero" Type="Self.recorrido_paradero" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="recorrido">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="recorrido_paradero">
+              <PropertyRef Name="Recorrido_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_TipoPasaje_has_Recorrido_Recorrido1">
+          <End Role="recorrido" Type="Self.recorrido" Multiplicity="1" />
+          <End Role="tipopasaje_recorrido" Type="Self.tipopasaje_recorrido" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="recorrido">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tipopasaje_recorrido">
+              <PropertyRef Name="Recorrido_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_TipoPasaje_has_Recorrido_TipoPasaje1">
+          <End Role="tipopasaje" Type="Self.tipopasaje" Multiplicity="1" />
+          <End Role="tipopasaje_recorrido" Type="Self.tipopasaje_recorrido" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tipopasaje">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tipopasaje_recorrido">
+              <PropertyRef Name="TipoPasaje_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="TesisbdModelStoreContainer">
+          <EntitySet Name="bus" EntityType="Self.bus" Schema="tesisbd" store:Type="Tables" />
+          <EntitySet Name="chofer" EntityType="Self.chofer" Schema="tesisbd" store:Type="Tables" />
+          <EntitySet Name="ciudad" EntityType="Self.ciudad" Schema="tesisbd" store:Type="Tables" />
+          <EntitySet Name="empresa" EntityType="Self.empresa" Schema="tesisbd" store:Type="Tables" />
+          <EntitySet Name="esta_en" EntityType="Self.esta_en" Schema="tesisbd" store:Type="Tables" />
+          <EntitySet Name="hace" EntityType="Self.hace" Schema="tesisbd" store:Type="Tables" />
+          <EntitySet Name="notificación" EntityType="Self.notificación" Schema="tesisbd" store:Type="Tables" />
+          <EntitySet Name="paradero" EntityType="Self.paradero" Schema="tesisbd" store:Type="Tables" />
+          <EntitySet Name="pasajero" EntityType="Self.pasajero" Schema="tesisbd" store:Type="Tables" />
+          <EntitySet Name="recorrido" EntityType="Self.recorrido" Schema="tesisbd" store:Type="Tables" />
+          <EntitySet Name="recorrido_paradero" EntityType="Self.recorrido_paradero" Schema="tesisbd" store:Type="Tables" />
+          <EntitySet Name="tipopasaje" EntityType="Self.tipopasaje" Schema="tesisbd" store:Type="Tables" />
+          <EntitySet Name="tipopasaje_recorrido" EntityType="Self.tipopasaje_recorrido" Schema="tesisbd" store:Type="Tables" />
+          <EntitySet Name="usuario" EntityType="Self.usuario" Schema="tesisbd" store:Type="Tables" />
+          <AssociationSet Name="fk_Bus_Empresa1" Association="Self.fk_Bus_Empresa1">
+            <End Role="empresa" EntitySet="empresa" />
+            <End Role="bus" EntitySet="bus" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Chofer_Bus1" Association="Self.fk_Chofer_Bus1">
+            <End Role="bus" EntitySet="bus" />
+            <End Role="chofer" EntitySet="chofer" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Chofer_Empresa1" Association="Self.fk_Chofer_Empresa1">
+            <End Role="empresa" EntitySet="empresa" />
+            <End Role="chofer" EntitySet="chofer" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Chofer_Usuario1" Association="Self.fk_Chofer_Usuario1">
+            <End Role="usuario" EntitySet="usuario" />
+            <End Role="chofer" EntitySet="chofer" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Esta_En_Paradero1" Association="Self.fk_Esta_En_Paradero1">
+            <End Role="paradero" EntitySet="paradero" />
+            <End Role="esta_en" EntitySet="esta_en" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Esta_En_Usuario1" Association="Self.fk_Esta_En_Usuario1">
+            <End Role="usuario" EntitySet="usuario" />
+            <End Role="esta_en" EntitySet="esta_en" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Hace_Bus1" Association="Self.fk_Hace_Bus1">
+            <End Role="bus" EntitySet="bus" />
+            <End Role="hace" EntitySet="hace" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Hace_Recorrido1" Association="Self.fk_Hace_Recorrido1">
+            <End Role="recorrido" EntitySet="recorrido" />
+            <End Role="hace" EntitySet="hace" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Notificación_Usuario1" Association="Self.fk_Notificación_Usuario1">
+            <End Role="usuario" EntitySet="usuario" />
+            <End Role="notificación" EntitySet="notificación" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Pasajero_Usuario1" Association="Self.fk_Pasajero_Usuario1">
+            <End Role="usuario" EntitySet="usuario" />
+            <End Role="pasajero" EntitySet="pasajero" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Recorrido_Ciudad1" Association="Self.fk_Recorrido_Ciudad1">
+            <End Role="ciudad" EntitySet="ciudad" />
+            <End Role="recorrido" EntitySet="recorrido" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Recorrido_Ciudad2" Association="Self.fk_Recorrido_Ciudad2">
+            <End Role="ciudad" EntitySet="ciudad" />
+            <End Role="recorrido" EntitySet="recorrido" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Recorrido_has_Paradero_Paradero1" Association="Self.fk_Recorrido_has_Paradero_Paradero1">
+            <End Role="paradero" EntitySet="paradero" />
+            <End Role="recorrido_paradero" EntitySet="recorrido_paradero" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Recorrido_has_Paradero_Recorrido1" Association="Self.fk_Recorrido_has_Paradero_Recorrido1">
+            <End Role="recorrido" EntitySet="recorrido" />
+            <End Role="recorrido_paradero" EntitySet="recorrido_paradero" />
+          </AssociationSet>
+          <AssociationSet Name="fk_TipoPasaje_has_Recorrido_Recorrido1" Association="Self.fk_TipoPasaje_has_Recorrido_Recorrido1">
+            <End Role="recorrido" EntitySet="recorrido" />
+            <End Role="tipopasaje_recorrido" EntitySet="tipopasaje_recorrido" />
+          </AssociationSet>
+          <AssociationSet Name="fk_TipoPasaje_has_Recorrido_TipoPasaje1" Association="Self.fk_TipoPasaje_has_Recorrido_TipoPasaje1">
+            <End Role="tipopasaje" EntitySet="tipopasaje" />
+            <End Role="tipopasaje_recorrido" EntitySet="tipopasaje_recorrido" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="TesisbdModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="TesisbdEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="bus" EntityType="TesisbdModel.bus" />
+          <EntitySet Name="chofer" EntityType="TesisbdModel.chofer" />
+          <EntitySet Name="ciudad" EntityType="TesisbdModel.ciudad" />
+          <EntitySet Name="empresa" EntityType="TesisbdModel.empresa" />
+          <EntitySet Name="esta_en" EntityType="TesisbdModel.esta_en" />
+          <EntitySet Name="hace" EntityType="TesisbdModel.hace" />
+          <EntitySet Name="notificación" EntityType="TesisbdModel.notificación" />
+          <EntitySet Name="paradero" EntityType="TesisbdModel.paradero" />
+          <EntitySet Name="pasajero" EntityType="TesisbdModel.pasajero" />
+          <EntitySet Name="recorrido" EntityType="TesisbdModel.recorrido" />
+          <EntitySet Name="recorrido_paradero" EntityType="TesisbdModel.recorrido_paradero" />
+          <EntitySet Name="tipopasaje" EntityType="TesisbdModel.tipopasaje" />
+          <EntitySet Name="tipopasaje_recorrido" EntityType="TesisbdModel.tipopasaje_recorrido" />
+          <EntitySet Name="usuario" EntityType="TesisbdModel.usuario" />
+          <AssociationSet Name="fk_Bus_Empresa1" Association="TesisbdModel.fk_Bus_Empresa1">
+            <End Role="empresa" EntitySet="empresa" />
+            <End Role="bus" EntitySet="bus" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Chofer_Bus1" Association="TesisbdModel.fk_Chofer_Bus1">
+            <End Role="bus" EntitySet="bus" />
+            <End Role="chofer" EntitySet="chofer" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Hace_Bus1" Association="TesisbdModel.fk_Hace_Bus1">
+            <End Role="bus" EntitySet="bus" />
+            <End Role="hace" EntitySet="hace" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Chofer_Empresa1" Association="TesisbdModel.fk_Chofer_Empresa1">
+            <End Role="empresa" EntitySet="empresa" />
+            <End Role="chofer" EntitySet="chofer" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Chofer_Usuario1" Association="TesisbdModel.fk_Chofer_Usuario1">
+            <End Role="usuario" EntitySet="usuario" />
+            <End Role="chofer" EntitySet="chofer" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Recorrido_Ciudad1" Association="TesisbdModel.fk_Recorrido_Ciudad1">
+            <End Role="ciudad" EntitySet="ciudad" />
+            <End Role="recorrido" EntitySet="recorrido" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Recorrido_Ciudad2" Association="TesisbdModel.fk_Recorrido_Ciudad2">
+            <End Role="ciudad" EntitySet="ciudad" />
+            <End Role="recorrido" EntitySet="recorrido" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Esta_En_Paradero1" Association="TesisbdModel.fk_Esta_En_Paradero1">
+            <End Role="paradero" EntitySet="paradero" />
+            <End Role="esta_en" EntitySet="esta_en" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Esta_En_Usuario1" Association="TesisbdModel.fk_Esta_En_Usuario1">
+            <End Role="usuario" EntitySet="usuario" />
+            <End Role="esta_en" EntitySet="esta_en" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Hace_Recorrido1" Association="TesisbdModel.fk_Hace_Recorrido1">
+            <End Role="recorrido" EntitySet="recorrido" />
+            <End Role="hace" EntitySet="hace" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Notificación_Usuario1" Association="TesisbdModel.fk_Notificación_Usuario1">
+            <End Role="usuario" EntitySet="usuario" />
+            <End Role="notificación" EntitySet="notificación" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Recorrido_has_Paradero_Paradero1" Association="TesisbdModel.fk_Recorrido_has_Paradero_Paradero1">
+            <End Role="paradero" EntitySet="paradero" />
+            <End Role="recorrido_paradero" EntitySet="recorrido_paradero" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Pasajero_Usuario1" Association="TesisbdModel.fk_Pasajero_Usuario1">
+            <End Role="usuario" EntitySet="usuario" />
+            <End Role="pasajero" EntitySet="pasajero" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Recorrido_has_Paradero_Recorrido1" Association="TesisbdModel.fk_Recorrido_has_Paradero_Recorrido1">
+            <End Role="recorrido" EntitySet="recorrido" />
+            <End Role="recorrido_paradero" EntitySet="recorrido_paradero" />
+          </AssociationSet>
+          <AssociationSet Name="fk_TipoPasaje_has_Recorrido_Recorrido1" Association="TesisbdModel.fk_TipoPasaje_has_Recorrido_Recorrido1">
+            <End Role="recorrido" EntitySet="recorrido" />
+            <End Role="tipopasaje_recorrido" EntitySet="tipopasaje_recorrido" />
+          </AssociationSet>
+          <AssociationSet Name="fk_TipoPasaje_has_Recorrido_TipoPasaje1" Association="TesisbdModel.fk_TipoPasaje_has_Recorrido_TipoPasaje1">
+            <End Role="tipopasaje" EntitySet="tipopasaje" />
+            <End Role="tipopasaje_recorrido" EntitySet="tipopasaje_recorrido" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="bus">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Empresa_Id" Type="Int32" Nullable="false" />
+          <Property Name="Patente" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="empresa" Relationship="TesisbdModel.fk_Bus_Empresa1" FromRole="bus" ToRole="empresa" />
+          <NavigationProperty Name="chofer" Relationship="TesisbdModel.fk_Chofer_Bus1" FromRole="bus" ToRole="chofer" />
+          <NavigationProperty Name="hace" Relationship="TesisbdModel.fk_Hace_Bus1" FromRole="bus" ToRole="hace" />
+        </EntityType>
+        <EntityType Name="chofer">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Usuario_Id" Type="Int32" Nullable="false" />
+          <Property Name="Bus_Id" Type="Int32" Nullable="false" />
+          <Property Name="Empresa_Id" Type="Int32" Nullable="false" />
+          <Property Name="Online" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="bus" Relationship="TesisbdModel.fk_Chofer_Bus1" FromRole="chofer" ToRole="bus" />
+          <NavigationProperty Name="empresa" Relationship="TesisbdModel.fk_Chofer_Empresa1" FromRole="chofer" ToRole="empresa" />
+          <NavigationProperty Name="usuario" Relationship="TesisbdModel.fk_Chofer_Usuario1" FromRole="chofer" ToRole="usuario" />
+        </EntityType>
+        <EntityType Name="ciudad">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="recorrido" Relationship="TesisbdModel.fk_Recorrido_Ciudad1" FromRole="ciudad" ToRole="recorrido" />
+          <NavigationProperty Name="recorrido1" Relationship="TesisbdModel.fk_Recorrido_Ciudad2" FromRole="ciudad" ToRole="recorrido" />
+        </EntityType>
+        <EntityType Name="empresa">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="Correo" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="Dirección" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="Telefono" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="bus" Relationship="TesisbdModel.fk_Bus_Empresa1" FromRole="empresa" ToRole="bus" />
+          <NavigationProperty Name="chofer" Relationship="TesisbdModel.fk_Chofer_Empresa1" FromRole="empresa" ToRole="chofer" />
+        </EntityType>
+        <EntityType Name="esta_en">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Usuario_Id" Type="Int32" Nullable="false" />
+          <Property Name="Paradero_Id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="paradero" Relationship="TesisbdModel.fk_Esta_En_Paradero1" FromRole="esta_en" ToRole="paradero" />
+          <NavigationProperty Name="usuario" Relationship="TesisbdModel.fk_Esta_En_Usuario1" FromRole="esta_en" ToRole="usuario" />
+        </EntityType>
+        <EntityType Name="hace">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="hora_inicio" Type="Time" />
+          <Property Name="hora_termino" Type="Time" />
+          <Property Name="Bus_Id" Type="Int32" Nullable="false" />
+          <Property Name="Recorrido_Id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="bus" Relationship="TesisbdModel.fk_Hace_Bus1" FromRole="hace" ToRole="bus" />
+          <NavigationProperty Name="recorrido" Relationship="TesisbdModel.fk_Hace_Recorrido1" FromRole="hace" ToRole="recorrido" />
+        </EntityType>
+        <EntityType Name="notificación">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Comentario" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Usuario_Id" Type="Int32" Nullable="false" />
+          <Property Name="Hora" Type="Time" Nullable="false" />
+          <NavigationProperty Name="usuario" Relationship="TesisbdModel.fk_Notificación_Usuario1" FromRole="notificación" ToRole="usuario" />
+        </EntityType>
+        <EntityType Name="paradero">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Longitud" Type="Decimal" Nullable="false" />
+          <Property Name="Latitud" Type="Decimal" Nullable="false" />
+          <Property Name="Nombre" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="esta_en" Relationship="TesisbdModel.fk_Esta_En_Paradero1" FromRole="paradero" ToRole="esta_en" />
+          <NavigationProperty Name="recorrido_paradero" Relationship="TesisbdModel.fk_Recorrido_has_Paradero_Paradero1" FromRole="paradero" ToRole="recorrido_paradero" />
+        </EntityType>
+        <EntityType Name="pasajero">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Usuario_Id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="usuario" Relationship="TesisbdModel.fk_Pasajero_Usuario1" FromRole="pasajero" ToRole="usuario" />
+        </EntityType>
+        <EntityType Name="recorrido">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="HorarioOrigen" Type="Time" />
+          <Property Name="HorarioDestino" Type="Time" />
+          <Property Name="Ciudad_Origen_Id" Type="Int32" Nullable="false" />
+          <Property Name="Ciudad_Destino_Id" Type="Int32" Nullable="false" />
+          <Property Name="Día" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="ciudad" Relationship="TesisbdModel.fk_Recorrido_Ciudad1" FromRole="recorrido" ToRole="ciudad" />
+          <NavigationProperty Name="ciudad1" Relationship="TesisbdModel.fk_Recorrido_Ciudad2" FromRole="recorrido" ToRole="ciudad" />
+          <NavigationProperty Name="hace" Relationship="TesisbdModel.fk_Hace_Recorrido1" FromRole="recorrido" ToRole="hace" />
+          <NavigationProperty Name="recorrido_paradero" Relationship="TesisbdModel.fk_Recorrido_has_Paradero_Recorrido1" FromRole="recorrido" ToRole="recorrido_paradero" />
+          <NavigationProperty Name="tipopasaje_recorrido" Relationship="TesisbdModel.fk_TipoPasaje_has_Recorrido_Recorrido1" FromRole="recorrido" ToRole="tipopasaje_recorrido" />
+        </EntityType>
+        <EntityType Name="recorrido_paradero">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Recorrido_Id" Type="Int32" Nullable="false" />
+          <Property Name="Paradero_Id" Type="Int32" Nullable="false" />
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="paradero" Relationship="TesisbdModel.fk_Recorrido_has_Paradero_Paradero1" FromRole="recorrido_paradero" ToRole="paradero" />
+          <NavigationProperty Name="recorrido" Relationship="TesisbdModel.fk_Recorrido_has_Paradero_Recorrido1" FromRole="recorrido_paradero" ToRole="recorrido" />
+        </EntityType>
+        <EntityType Name="tipopasaje">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Tipo" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="tipopasaje_recorrido" Relationship="TesisbdModel.fk_TipoPasaje_has_Recorrido_TipoPasaje1" FromRole="tipopasaje" ToRole="tipopasaje_recorrido" />
+        </EntityType>
+        <EntityType Name="tipopasaje_recorrido">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="TipoPasaje_Id" Type="Int32" Nullable="false" />
+          <Property Name="Recorrido_Id" Type="Int32" Nullable="false" />
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Precio" Type="Int32" />
+          <NavigationProperty Name="recorrido" Relationship="TesisbdModel.fk_TipoPasaje_has_Recorrido_Recorrido1" FromRole="tipopasaje_recorrido" ToRole="recorrido" />
+          <NavigationProperty Name="tipopasaje" Relationship="TesisbdModel.fk_TipoPasaje_has_Recorrido_TipoPasaje1" FromRole="tipopasaje_recorrido" ToRole="tipopasaje" />
+        </EntityType>
+        <EntityType Name="usuario">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Longitud" Type="Double" />
+          <Property Name="Latitud" Type="Double" />
+          <Property Name="Correo" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="chofer" Relationship="TesisbdModel.fk_Chofer_Usuario1" FromRole="usuario" ToRole="chofer" />
+          <NavigationProperty Name="esta_en" Relationship="TesisbdModel.fk_Esta_En_Usuario1" FromRole="usuario" ToRole="esta_en" />
+          <NavigationProperty Name="notificación" Relationship="TesisbdModel.fk_Notificación_Usuario1" FromRole="usuario" ToRole="notificación" />
+          <NavigationProperty Name="pasajero" Relationship="TesisbdModel.fk_Pasajero_Usuario1" FromRole="usuario" ToRole="pasajero" />
+        </EntityType>
+        <Association Name="fk_Bus_Empresa1">
+          <End Type="TesisbdModel.empresa" Role="empresa" Multiplicity="1" />
+          <End Type="TesisbdModel.bus" Role="bus" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="empresa">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="bus">
+              <PropertyRef Name="Empresa_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Chofer_Bus1">
+          <End Type="TesisbdModel.bus" Role="bus" Multiplicity="1" />
+          <End Type="TesisbdModel.chofer" Role="chofer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="bus">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="chofer">
+              <PropertyRef Name="Bus_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Hace_Bus1">
+          <End Type="TesisbdModel.bus" Role="bus" Multiplicity="1" />
+          <End Type="TesisbdModel.hace" Role="hace" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="bus">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="hace">
+              <PropertyRef Name="Bus_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Chofer_Empresa1">
+          <End Type="TesisbdModel.empresa" Role="empresa" Multiplicity="1" />
+          <End Type="TesisbdModel.chofer" Role="chofer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="empresa">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="chofer">
+              <PropertyRef Name="Empresa_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Chofer_Usuario1">
+          <End Type="TesisbdModel.usuario" Role="usuario" Multiplicity="1" />
+          <End Type="TesisbdModel.chofer" Role="chofer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="usuario">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="chofer">
+              <PropertyRef Name="Usuario_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Recorrido_Ciudad1">
+          <End Type="TesisbdModel.ciudad" Role="ciudad" Multiplicity="1" />
+          <End Type="TesisbdModel.recorrido" Role="recorrido" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ciudad">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="recorrido">
+              <PropertyRef Name="Ciudad_Origen_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Recorrido_Ciudad2">
+          <End Type="TesisbdModel.ciudad" Role="ciudad" Multiplicity="1" />
+          <End Type="TesisbdModel.recorrido" Role="recorrido" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ciudad">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="recorrido">
+              <PropertyRef Name="Ciudad_Destino_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Esta_En_Paradero1">
+          <End Type="TesisbdModel.paradero" Role="paradero" Multiplicity="1" />
+          <End Type="TesisbdModel.esta_en" Role="esta_en" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="paradero">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="esta_en">
+              <PropertyRef Name="Paradero_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Esta_En_Usuario1">
+          <End Type="TesisbdModel.usuario" Role="usuario" Multiplicity="1" />
+          <End Type="TesisbdModel.esta_en" Role="esta_en" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="usuario">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="esta_en">
+              <PropertyRef Name="Usuario_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Hace_Recorrido1">
+          <End Type="TesisbdModel.recorrido" Role="recorrido" Multiplicity="1" />
+          <End Type="TesisbdModel.hace" Role="hace" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="recorrido">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="hace">
+              <PropertyRef Name="Recorrido_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Notificación_Usuario1">
+          <End Type="TesisbdModel.usuario" Role="usuario" Multiplicity="1" />
+          <End Type="TesisbdModel.notificación" Role="notificación" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="usuario">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="notificación">
+              <PropertyRef Name="Usuario_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Recorrido_has_Paradero_Paradero1">
+          <End Type="TesisbdModel.paradero" Role="paradero" Multiplicity="1" />
+          <End Type="TesisbdModel.recorrido_paradero" Role="recorrido_paradero" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="paradero">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="recorrido_paradero">
+              <PropertyRef Name="Paradero_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Pasajero_Usuario1">
+          <End Type="TesisbdModel.usuario" Role="usuario" Multiplicity="1" />
+          <End Type="TesisbdModel.pasajero" Role="pasajero" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="usuario">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="pasajero">
+              <PropertyRef Name="Usuario_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Recorrido_has_Paradero_Recorrido1">
+          <End Type="TesisbdModel.recorrido" Role="recorrido" Multiplicity="1" />
+          <End Type="TesisbdModel.recorrido_paradero" Role="recorrido_paradero" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="recorrido">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="recorrido_paradero">
+              <PropertyRef Name="Recorrido_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_TipoPasaje_has_Recorrido_Recorrido1">
+          <End Type="TesisbdModel.recorrido" Role="recorrido" Multiplicity="1" />
+          <End Type="TesisbdModel.tipopasaje_recorrido" Role="tipopasaje_recorrido" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="recorrido">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tipopasaje_recorrido">
+              <PropertyRef Name="Recorrido_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_TipoPasaje_has_Recorrido_TipoPasaje1">
+          <End Type="TesisbdModel.tipopasaje" Role="tipopasaje" Multiplicity="1" />
+          <End Type="TesisbdModel.tipopasaje_recorrido" Role="tipopasaje_recorrido" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tipopasaje">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tipopasaje_recorrido">
+              <PropertyRef Name="TipoPasaje_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="TesisbdModelStoreContainer" CdmEntityContainer="TesisbdEntities">
+          <EntitySetMapping Name="bus">
+            <EntityTypeMapping TypeName="TesisbdModel.bus">
+              <MappingFragment StoreEntitySet="bus">
+                <ScalarProperty Name="Patente" ColumnName="Patente" />
+                <ScalarProperty Name="Empresa_Id" ColumnName="Empresa_Id" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="chofer">
+            <EntityTypeMapping TypeName="TesisbdModel.chofer">
+              <MappingFragment StoreEntitySet="chofer">
+                <ScalarProperty Name="Online" ColumnName="Online" />
+                <ScalarProperty Name="Empresa_Id" ColumnName="Empresa_Id" />
+                <ScalarProperty Name="Bus_Id" ColumnName="Bus_Id" />
+                <ScalarProperty Name="Usuario_Id" ColumnName="Usuario_Id" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ciudad">
+            <EntityTypeMapping TypeName="TesisbdModel.ciudad">
+              <MappingFragment StoreEntitySet="ciudad">
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="empresa">
+            <EntityTypeMapping TypeName="TesisbdModel.empresa">
+              <MappingFragment StoreEntitySet="empresa">
+                <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+                <ScalarProperty Name="Dirección" ColumnName="Dirección" />
+                <ScalarProperty Name="Correo" ColumnName="Correo" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="esta_en">
+            <EntityTypeMapping TypeName="TesisbdModel.esta_en">
+              <MappingFragment StoreEntitySet="esta_en">
+                <ScalarProperty Name="Paradero_Id" ColumnName="Paradero_Id" />
+                <ScalarProperty Name="Usuario_Id" ColumnName="Usuario_Id" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="hace">
+            <EntityTypeMapping TypeName="TesisbdModel.hace">
+              <MappingFragment StoreEntitySet="hace">
+                <ScalarProperty Name="Recorrido_Id" ColumnName="Recorrido_Id" />
+                <ScalarProperty Name="Bus_Id" ColumnName="Bus_Id" />
+                <ScalarProperty Name="hora_termino" ColumnName="hora_termino" />
+                <ScalarProperty Name="hora_inicio" ColumnName="hora_inicio" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="notificación">
+            <EntityTypeMapping TypeName="TesisbdModel.notificación">
+              <MappingFragment StoreEntitySet="notificación">
+                <ScalarProperty Name="Hora" ColumnName="Hora" />
+                <ScalarProperty Name="Usuario_Id" ColumnName="Usuario_Id" />
+                <ScalarProperty Name="Comentario" ColumnName="Comentario" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="paradero">
+            <EntityTypeMapping TypeName="TesisbdModel.paradero">
+              <MappingFragment StoreEntitySet="paradero">
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Latitud" ColumnName="Latitud" />
+                <ScalarProperty Name="Longitud" ColumnName="Longitud" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="pasajero">
+            <EntityTypeMapping TypeName="TesisbdModel.pasajero">
+              <MappingFragment StoreEntitySet="pasajero">
+                <ScalarProperty Name="Usuario_Id" ColumnName="Usuario_Id" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="recorrido">
+            <EntityTypeMapping TypeName="TesisbdModel.recorrido">
+              <MappingFragment StoreEntitySet="recorrido">
+                <ScalarProperty Name="Día" ColumnName="Día" />
+                <ScalarProperty Name="Ciudad_Destino_Id" ColumnName="Ciudad_Destino_Id" />
+                <ScalarProperty Name="Ciudad_Origen_Id" ColumnName="Ciudad_Origen_Id" />
+                <ScalarProperty Name="HorarioDestino" ColumnName="HorarioDestino" />
+                <ScalarProperty Name="HorarioOrigen" ColumnName="HorarioOrigen" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="recorrido_paradero">
+            <EntityTypeMapping TypeName="TesisbdModel.recorrido_paradero">
+              <MappingFragment StoreEntitySet="recorrido_paradero">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Paradero_Id" ColumnName="Paradero_Id" />
+                <ScalarProperty Name="Recorrido_Id" ColumnName="Recorrido_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tipopasaje">
+            <EntityTypeMapping TypeName="TesisbdModel.tipopasaje">
+              <MappingFragment StoreEntitySet="tipopasaje">
+                <ScalarProperty Name="Tipo" ColumnName="Tipo" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tipopasaje_recorrido">
+            <EntityTypeMapping TypeName="TesisbdModel.tipopasaje_recorrido">
+              <MappingFragment StoreEntitySet="tipopasaje_recorrido">
+                <ScalarProperty Name="Precio" ColumnName="Precio" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Recorrido_Id" ColumnName="Recorrido_Id" />
+                <ScalarProperty Name="TipoPasaje_Id" ColumnName="TipoPasaje_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="usuario">
+            <EntityTypeMapping TypeName="TesisbdModel.usuario">
+              <MappingFragment StoreEntitySet="usuario">
+                <ScalarProperty Name="Correo" ColumnName="Correo" />
+                <ScalarProperty Name="Latitud" ColumnName="Latitud" />
+                <ScalarProperty Name="Longitud" ColumnName="Longitud" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="true" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

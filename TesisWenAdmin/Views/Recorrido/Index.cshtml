@@ -1,0 +1,52 @@
+﻿@model IEnumerable<TesisWenAdmin.recorrido>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Crear nuevo", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.HorarioOrigen)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.HorarioDestino)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ciudad.Nombre)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ciudad1.Nombre)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.HorarioOrigen)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.HorarioDestino)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ciudad.Nombre)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ciudad1.Nombre)
+        </td>
+        <td>
+            @Html.ActionLink("Editar", "Edit", new { id=item.Id }) |
+            @Html.ActionLink("Detalles", "Details", new { id=item.Id }) |
+            @Html.ActionLink("Eliminar", "Delete", new { id=item.Id }) |
+            @Html.ActionLink("Asociar Paradero","Create", "Recorrido_Paradero", new { id = item.Id }, null )
+        </td>
+    </tr>
+}
+
+</table>

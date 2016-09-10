@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="10e0bc0af10b40a09cb05134a804dc6f" Name="Diagram1" ZoomLevel="63">
+        <EntityTypeShape EntityType="TesisbdModel.bus" Width="1.5" PointX="3" PointY="8.5" />
+        <EntityTypeShape EntityType="TesisbdModel.chofer" Width="1.5" PointX="10" PointY="3.875" />
+        <EntityTypeShape EntityType="TesisbdModel.ciudad" Width="1.5" PointX="0.75" PointY="4.625" />
+        <EntityTypeShape EntityType="TesisbdModel.empresa" Width="1.5" PointX="0.75" PointY="8.375" />
+        <EntityTypeShape EntityType="TesisbdModel.esta_en" Width="1.5" PointX="13" PointY="8.625" />
+        <EntityTypeShape EntityType="TesisbdModel.hace" Width="1.5" PointX="5.25" PointY="4.375" />
+        <EntityTypeShape EntityType="TesisbdModel.notificación" Width="1.5" PointX="10" PointY="13" />
+        <EntityTypeShape EntityType="TesisbdModel.paradero" Width="1.5" PointX="3" PointY="11.5" />
+        <EntityTypeShape EntityType="TesisbdModel.pasajero" Width="1.5" PointX="10" PointY="8" />
+        <EntityTypeShape EntityType="TesisbdModel.recorrido" Width="1.5" PointX="3" PointY="4" />
+        <EntityTypeShape EntityType="TesisbdModel.recorrido_paradero" Width="1.5" PointX="5.25" PointY="7.5" />
+        <EntityTypeShape EntityType="TesisbdModel.tipopasaje" Width="1.5" PointX="3" PointY="0.75" />
+        <EntityTypeShape EntityType="TesisbdModel.tipopasaje_recorrido" Width="1.5" PointX="5.25" PointY="1.5" />
+        <EntityTypeShape EntityType="TesisbdModel.usuario" Width="1.5" PointX="7.75" PointY="5.5" />
+        <AssociationConnector Association="TesisbdModel.fk_Bus_Empresa1" />
+        <AssociationConnector Association="TesisbdModel.fk_Chofer_Bus1" />
+        <AssociationConnector Association="TesisbdModel.fk_Hace_Bus1" />
+        <AssociationConnector Association="TesisbdModel.fk_Chofer_Empresa1" />
+        <AssociationConnector Association="TesisbdModel.fk_Chofer_Usuario1" />
+        <AssociationConnector Association="TesisbdModel.fk_Recorrido_Ciudad1" />
+        <AssociationConnector Association="TesisbdModel.fk_Recorrido_Ciudad2" />
+        <AssociationConnector Association="TesisbdModel.fk_Esta_En_Paradero1" />
+        <AssociationConnector Association="TesisbdModel.fk_Esta_En_Usuario1" />
+        <AssociationConnector Association="TesisbdModel.fk_Hace_Recorrido1" />
+        <AssociationConnector Association="TesisbdModel.fk_Notificación_Usuario1" />
+        <AssociationConnector Association="TesisbdModel.fk_Recorrido_has_Paradero_Paradero1" />
+        <AssociationConnector Association="TesisbdModel.fk_Pasajero_Usuario1" />
+        <AssociationConnector Association="TesisbdModel.fk_Recorrido_has_Paradero_Recorrido1" />
+        <AssociationConnector Association="TesisbdModel.fk_TipoPasaje_has_Recorrido_Recorrido1" />
+        <AssociationConnector Association="TesisbdModel.fk_TipoPasaje_has_Recorrido_TipoPasaje1" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -1,0 +1,56 @@
+﻿@model TesisWenAdmin.recorrido
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Eliminar</h2>
+
+<h3>Estas seguro de eliminar esto?</h3>
+<div>
+    <h4>recorrido</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.HorarioOrigen)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.HorarioOrigen)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.HorarioDestino)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.HorarioDestino)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ciudad.Nombre,"Ciudad Origen")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ciudad.Nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ciudad1.Nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ciudad1.Nombre)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Eliminar" class="btn btn-default" /> |
+            @Html.ActionLink("Volver a la lista de recorridos", "Index")
+        </div>
+    }
+</div>

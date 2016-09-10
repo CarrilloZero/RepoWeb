@@ -1,0 +1,50 @@
+﻿@model TesisWenAdmin.recorrido
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Detalles</h2>
+
+<div>
+    <h4>recorrido</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.HorarioOrigen)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.HorarioOrigen)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.HorarioDestino)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.HorarioDestino)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ciudad.Nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ciudad.Nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ciudad1.Nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ciudad1.Nombre)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Editar", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Volver a la lista de recorridos", "Index")
+</p>

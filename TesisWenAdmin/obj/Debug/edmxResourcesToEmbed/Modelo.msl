@@ -1,0 +1,141 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="TesisbdModelStoreContainer" CdmEntityContainer="TesisbdEntities">
+    <EntitySetMapping Name="bus">
+      <EntityTypeMapping TypeName="TesisbdModel.bus">
+        <MappingFragment StoreEntitySet="bus">
+          <ScalarProperty Name="Patente" ColumnName="Patente" />
+          <ScalarProperty Name="Empresa_Id" ColumnName="Empresa_Id" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="chofer">
+      <EntityTypeMapping TypeName="TesisbdModel.chofer">
+        <MappingFragment StoreEntitySet="chofer">
+          <ScalarProperty Name="Online" ColumnName="Online" />
+          <ScalarProperty Name="Empresa_Id" ColumnName="Empresa_Id" />
+          <ScalarProperty Name="Bus_Id" ColumnName="Bus_Id" />
+          <ScalarProperty Name="Usuario_Id" ColumnName="Usuario_Id" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ciudad">
+      <EntityTypeMapping TypeName="TesisbdModel.ciudad">
+        <MappingFragment StoreEntitySet="ciudad">
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="empresa">
+      <EntityTypeMapping TypeName="TesisbdModel.empresa">
+        <MappingFragment StoreEntitySet="empresa">
+          <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+          <ScalarProperty Name="Dirección" ColumnName="Dirección" />
+          <ScalarProperty Name="Correo" ColumnName="Correo" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="esta_en">
+      <EntityTypeMapping TypeName="TesisbdModel.esta_en">
+        <MappingFragment StoreEntitySet="esta_en">
+          <ScalarProperty Name="Paradero_Id" ColumnName="Paradero_Id" />
+          <ScalarProperty Name="Usuario_Id" ColumnName="Usuario_Id" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="hace">
+      <EntityTypeMapping TypeName="TesisbdModel.hace">
+        <MappingFragment StoreEntitySet="hace">
+          <ScalarProperty Name="Recorrido_Id" ColumnName="Recorrido_Id" />
+          <ScalarProperty Name="Bus_Id" ColumnName="Bus_Id" />
+          <ScalarProperty Name="hora_termino" ColumnName="hora_termino" />
+          <ScalarProperty Name="hora_inicio" ColumnName="hora_inicio" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="notificación">
+      <EntityTypeMapping TypeName="TesisbdModel.notificación">
+        <MappingFragment StoreEntitySet="notificación">
+          <ScalarProperty Name="Hora" ColumnName="Hora" />
+          <ScalarProperty Name="Usuario_Id" ColumnName="Usuario_Id" />
+          <ScalarProperty Name="Comentario" ColumnName="Comentario" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="paradero">
+      <EntityTypeMapping TypeName="TesisbdModel.paradero">
+        <MappingFragment StoreEntitySet="paradero">
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="Latitud" ColumnName="Latitud" />
+          <ScalarProperty Name="Longitud" ColumnName="Longitud" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="pasajero">
+      <EntityTypeMapping TypeName="TesisbdModel.pasajero">
+        <MappingFragment StoreEntitySet="pasajero">
+          <ScalarProperty Name="Usuario_Id" ColumnName="Usuario_Id" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="recorrido">
+      <EntityTypeMapping TypeName="TesisbdModel.recorrido">
+        <MappingFragment StoreEntitySet="recorrido">
+          <ScalarProperty Name="Día" ColumnName="Día" />
+          <ScalarProperty Name="Ciudad_Destino_Id" ColumnName="Ciudad_Destino_Id" />
+          <ScalarProperty Name="Ciudad_Origen_Id" ColumnName="Ciudad_Origen_Id" />
+          <ScalarProperty Name="HorarioDestino" ColumnName="HorarioDestino" />
+          <ScalarProperty Name="HorarioOrigen" ColumnName="HorarioOrigen" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="recorrido_paradero">
+      <EntityTypeMapping TypeName="TesisbdModel.recorrido_paradero">
+        <MappingFragment StoreEntitySet="recorrido_paradero">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Paradero_Id" ColumnName="Paradero_Id" />
+          <ScalarProperty Name="Recorrido_Id" ColumnName="Recorrido_Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tipopasaje">
+      <EntityTypeMapping TypeName="TesisbdModel.tipopasaje">
+        <MappingFragment StoreEntitySet="tipopasaje">
+          <ScalarProperty Name="Tipo" ColumnName="Tipo" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tipopasaje_recorrido">
+      <EntityTypeMapping TypeName="TesisbdModel.tipopasaje_recorrido">
+        <MappingFragment StoreEntitySet="tipopasaje_recorrido">
+          <ScalarProperty Name="Precio" ColumnName="Precio" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Recorrido_Id" ColumnName="Recorrido_Id" />
+          <ScalarProperty Name="TipoPasaje_Id" ColumnName="TipoPasaje_Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="usuario">
+      <EntityTypeMapping TypeName="TesisbdModel.usuario">
+        <MappingFragment StoreEntitySet="usuario">
+          <ScalarProperty Name="Correo" ColumnName="Correo" />
+          <ScalarProperty Name="Latitud" ColumnName="Latitud" />
+          <ScalarProperty Name="Longitud" ColumnName="Longitud" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
